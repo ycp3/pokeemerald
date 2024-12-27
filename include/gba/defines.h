@@ -6,9 +6,15 @@
 #define TRUE  1
 #define FALSE 0
 
+#if defined(__APPLE__)
+#define IWRAM_DATA __attribute__((section("IWRAM_DATA,iwram_data")))
+#define EWRAM_DATA __attribute__((section("EWRAM_DATA,ewram_data")))
+#define COMMON_DATA __attribute__((section("COMMON_DATA,common_data")))
+#else
 #define IWRAM_DATA __attribute__((section("iwram_data")))
 #define EWRAM_DATA __attribute__((section("ewram_data")))
 #define COMMON_DATA __attribute__((section("common_data")))
+#endif
 #define UNUSED __attribute__((unused))
 
 #if MODERN
